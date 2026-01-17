@@ -1,91 +1,121 @@
 // ========================================
 // WEDDING INVITATION SCRIPT
-// Handles URL parameter extraction & personalization
+// URL-based personalization (NO backend)
 // ========================================
 
-(function() {
-    'use strict';
+(function () {
+  'use strict';
 
-    // Get recipient name from URL parameter ?to=
-    function getRecipientName() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const name = urlParams.get('to');
-        
-        if (!name || name.trim() === '') {
-            return 'Guest';
-        }
-        
-        // Decode URL encoding (handles spaces and special chars)
-        const decodedName = decodeURIComponent(name.trim());
-        
-        // Capitalize each word
-        return decodedName
-            .split(' ')
-            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-            .join(' ');
+  const params = new URLSearchParams(window.location.search);
+
+  /* ----------------------------------------
+     UTIL: FORMAT NAME
+  ---------------------------------------- */
+  function formatName(text) {
+    return text
+      .toLowerCase()
+      .split(' ')
+      .filter(Boolean)
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  }
+
+  /* ----------------------------------------
+     GET RECIPIENT NAME
+  ---------------------------------------- */
+  function getRecipientName() {
+    const rawName = params.get('to');
+
+    if (!rawName || rawName.trim() === '') {
+      return 'Guest';
     }
 
-    // Update all name placeholders
-    function updateInvitation() {
-        const recipientName = getRecipientName();
-        
-        // Update video overlay names
-        const videoNameEn = document.getElementById('videoNameEn');
-        const videoNameAr = document.getElementById('videoNameAr');
-        const cardNameText = document.getElementById('cardNameText');
-        
-        if (videoNameEn) {
-            videoNameEn.textContent = `Dear ${recipientName}`;
-        }
-        
-        if (videoNameAr) {
-            // Arabic translation with name
-            videoNameAr.textContent = recipientName === 'Guest' 
-                ? 'عزيزي الضيف' 
-                : `عزيزي ${recipientName}`;
-        }
-        
-        if (cardNameText) {
-            cardNameText.textContent = recipientName;
-        }
-        
-        // Update page title
-        document.title = `Wedding Invitation - ${recipientName}`;
+    return formatName(decodeURIComponent(rawName.trim()));
+  }
+
+  /* ----------------------------------------
+     UPDATE INVITATION CONTENT
+  ---------------------------------------- */
+  function updateInvitation() {
+    const recipientName = getRecipientName();
+    const type = params.get('type'); // family | single | null
+
+    // CARD TEXT
+    const cardName = document.getElementById('cardNameText');
+    const cardFamily = document.getElementById('cardFamilyText');
+
+    if (cardName) {
+      cardName.textContent = recipientName;
     }
 
-    // Ensure video plays on mobile (iOS workaround)
-    function initVideo() {
-        const video = document.getElementById('inviteVideo');
-        
-        if (video) {
-            video.muted = true;
-            video.playsInline = true;
-            
-            // Attempt autoplay
-            const playPromise = video.play();
-            
-            if (playPromise !== undefined) {
-                playPromise.catch(error => {
-                    console.log('Autoplay prevented, user interaction required');
-                    
-                    // Fallback: play on first touch/click
-                    document.body.addEventListener('click', function playOnce() {
-                        video.play();
-                        document.body.removeEventListener('click', playOnce);
-                    }, { once: true });
-                });
-            }
-        }
+    // Default: BLANK second line
+    if (cardFamily) {
+      cardFamily.textContent = '';
+
+      if (type === 'family') {
+        cardFamily.textContent = 'With Family';
+      } else if (type === 'single') {
+        cardFamily.textContent = '(Only)';
+      }
     }
 
-    // Initialize on page load
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-            updateInvitation();
-            initVideo();
-        });
-    } else {
-        updateInvitation();
-        initVideo();
+    // VIDEO TEXT (EN)
+    const videoNameEn = document.getElementById('videoNameEn');
+    if (videoNameEn) {
+      videoNameEn.textContent = `Dear ${recipientName}`;
     }
+
+    // VIDEO TEXT (AR)
+    const videoNameAr = document.getElementById('videoNameAr');
+    if (videoNameAr) {
+      videoNameAr.textContent =
+        recipientName === 'Guest'
+          ? 'عزيزي الضيف'
+          : `عزيزي ${recipientName}`;
+    }
+
+    // PAGE TITLE
+    document.title = `Wedding Invitation - ${recipientName}`;
+  }
+
+  /* ----------------------------------------
+     VIDEO AUTOPLAY SAFETY (MOBILE)
+  ---------------------------------------- */
+  function initVideo() {
+    const video = document.getElementById('inviteVideo');
+
+    if (!video) return;
+
+    video.muted = true;
+    video.playsInline = true;
+
+    const playPromise = video.play();
+
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        document.body.addEventListener(
+          'click',
+          function playOnce() {
+            video.play();
+            document.body.removeEventListener('click', playOnce);
+          },
+          { once: true }
+        );
+      });
+    }
+  }
+
+  /* ----------------------------------------
+     INIT
+  ---------------------------------------- */
+  function init() {
+    updateInvitation();
+    initVideo();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
