@@ -133,8 +133,8 @@ body {
 /* NAME OVERLAY POSITION */
 .card-name-overlay {
   position: absolute;
-  top: 32.5%;          /* adjust if needed */
-  left: 29%;
+  top: 34.3%;          /* adjust if needed */
+  left: 20%;
   transform: translate(-50%, -50%);
   width: 50%;
   text-align: center;
@@ -307,3 +307,4 @@ body {
         font-size: 2rem;
     }
 }
+
