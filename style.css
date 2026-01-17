@@ -1,0 +1,278 @@
+/* ========================================
+   WEDDING INVITATION STYLES
+   Production-Ready | Mobile-First
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --gold: #0b0a06;
+    --dark-gold: #b8941e;
+    --cream: #faf8f3;
+    --dark-brown: #4a3f35;
+    --white: #ffffff;
+}
+
+body {
+    font-family: 'Cormorant Garamond', serif;
+    background: var(--cream);
+    color: var(--dark-brown);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ========================================
+   VIDEO SECTION WITH OVERLAY
+======================================== */
+
+.video-section {
+    position: relative;
+    width: 100%;
+    /* height: 100vh; */
+    overflow: hidden;
+}
+
+#inviteVideo {
+    width: 100%;
+    /* height: 100%; */
+    object-fit: cover;
+    display: block;
+    padding: 10px;
+}
+
+.video-overlay {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--cream) 0%, #f5f2ea 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.video-text-container {
+    /* text-align: center; */
+    color: var(--dark-gold);
+    animation: fadeInUp 2s ease-out;
+}
+
+.video-name-en {
+    font-size: 3.5rem;
+    /* font-weight: 300;
+    margin-bottom: 1rem; */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    animation: fadeInUp 2.5s ease-out;
+}
+
+.video-name-ar {
+    font-family: 'Amiri', serif;
+    font-size: 3rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    direction: rtl;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    animation: fadeInUp 3s ease-out;
+}
+
+.video-subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.9;
+    animation: fadeInUp 3.5s ease-out;
+    margin-bottom: 1rem;
+}
+
+/* Elegant Animation */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   CARD SECTION WITH NAME OVERLAY
+======================================== */
+
+.card-section {
+    padding: 4rem 1rem;
+    background: var(--cream);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-container {
+    position: relative;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ⚙️ ADJUST NAME POSITION HERE ⚙️ */
+.card-name-overlay {
+    position: absolute;
+    top: 30%;              /* ← Change this to move name up/down */
+    left: 25%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    text-align: center;
+    pointer-events: none;
+}
+
+.card-name-text {
+    font-size: 2.5rem;     /* ← Change this to adjust name size */
+    font-weight: 600;
+    color: var(--gold);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
+    animation: fadeIn 1.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ========================================
+   DETAILS SECTION
+======================================== */
+
+.details-section {
+    /* padding: 4rem 1rem; */
+    background: linear-gradient(135deg, var(--cream) 0%, #f5f2ea 100%);
+}
+
+.details-container {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.couple-names {
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    /* margin-bottom: 3rem; */
+    letter-spacing: 3px;
+}
+
+.event-details {
+    /* margin: 3rem 0; */
+}
+
+.detail-item {
+    /* margin-bottom: 2.5rem; */
+}
+
+.detail-item h3 {
+    font-size: 1.8rem;
+    color: var(--dark-gold);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.detail-item p {
+    font-size: 1.3rem;
+    color: var(--dark-brown);
+    margin: 0.3rem 0;
+}
+
+.message {
+    margin-top: 3rem;
+    padding: 2rem;
+    border-top: 2px solid var(--gold);
+    border-bottom: 2px solid var(--gold);
+}
+
+.arabic-text {
+    font-family: 'Amiri', serif;
+    font-size: 2rem;
+    direction: rtl;
+    color: var(--dark-gold);
+    margin-bottom: 1rem;
+}
+
+.message p:last-child {
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--dark-brown);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+======================================== */
+
+@media (max-width: 768px) {
+    .video-name-en {
+        font-size: 2.5rem;
+    }
+    
+    .video-name-ar {
+        font-size: 2rem;
+    }
+    
+    .video-subtitle {
+        font-size: 1rem;
+    }
+    
+    .card-name-text {
+        font-size: 14px;
+    }
+    
+    .couple-names {
+        font-size: 2.5rem;
+    }
+    
+    .detail-item h3 {
+        font-size: 1.5rem;
+    }
+    
+    .detail-item p {
+        font-size: 1.1rem;
+    }
+    
+    .arabic-text {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .video-name-en {
+        /* font-size: 2rem; */
+    }
+    
+    .video-name-ar {
+        /* font-size: 1.6rem; */
+    }
+    
+    .card-name-text {
+        font-size: 14px;
+    }
+    
+    .couple-names {
+        font-size: 2rem;
+    }
+}

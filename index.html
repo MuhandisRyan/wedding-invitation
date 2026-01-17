@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation</title>
+    
+    <!-- WhatsApp Open Graph Meta Tags -->
+    <meta property="og:title" content="You're Invited to Our Wedding" />
+    <meta property="og:description" content="Join us in celebrating our special day" />
+    <meta property="og:image" content="assets/card.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="assets/index.html" />
+    
+    <!-- Arabic Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+            <!-- Animated Name Overlay on Video -->
+        <div class="video-overlay">
+            <div class="video-text-container">
+                <h1 class="video-name-en" id="videoNameEn">Dear Guest</h1>
+                <h1 class="video-name-ar" id="videoNameAr">عزيزي الضيف</h1>
+                <p class="video-subtitle">You are cordially invited</p>
+            </div>
+        </div>
+    <!-- Video Section with Overlay -->
+    <section class="video-section">
+        <video id="inviteVideo" autoplay muted loop playsinline>
+            <source src="assets/invitation.MP4" type="video/mp4">
+            Your browser does not support the video.
+        </video>
+        
+        <!-- Animated Name Overlay on Video -->
+        <!-- <div class="video-overlay">
+            <div class="video-text-container">
+                <h1 class="video-name-en" id="videoNameEn">Dear Guest</h1>
+                <h1 class="video-name-ar" id="videoNameAr">عزيزي الضيف</h1>
+                <p class="video-subtitle">You are cordially invited</p>
+            </div>
+        </div> -->
+    </section>
+
+    <!-- Wedding Card Section -->
+    <section class="card-section">
+        <div class="card-container">
+            <!-- Background Card Image -->
+            <img src="assets/card.png" alt="Wedding Invitation Card" class="card-image">
+            
+            <!-- Name Overlay on Card - ADJUST POSITION HERE -->
+            <div class="card-name-overlay">
+                <p class="card-name-text" id="cardNameText">Guest</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Invitation Details -->
+    <section class="details-section">
+        <div class="details-container">
+            <h2 class="couple-names">Khadija & Mashroor</h2>
+            
+            <div class="event-details">
+                <div class="detail-item">
+                    <h3>Nikah Ceremony</h3>
+                    <p>Friday, March 15th, 2026</p>
+                    <p>6:00 PM onwards</p>
+                </div>
+                
+                <div class="detail-item">
+                    <h3>Venue</h3>
+                    <p>Avadh International</p>
+                    <p>Ismailganj, Kamta</p>
+                    <!-- <p>123 Main Street, City</p> -->
+                </div>
+            </div>
+            
+            <div class="message">
+                <p class="arabic-text">نتشرف بحضوركم لمشاركتنا فرحتنا</p>
+                <p>We would be honored by your presence</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
