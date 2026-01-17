@@ -130,44 +130,53 @@ body {
   display: block;
 }
 
-/* NAME OVERLAY POSITION (TUNE ONLY THIS) */
+/* NAME OVERLAY POSITION */
 .card-name-overlay {
   position: absolute;
-  top: 31.9%;        /* 👈 adjust vertically */
-  left: 26%;       /* 👈 adjust horizontally */
+  top: 33%;          /* adjust vertically */
+  left: 25%;         /* adjust horizontally */
   transform: translate(-50%, -50%);
-  width: 45%;      /* 👈 limits long names */
+  width: 45%;
   text-align: center;
   pointer-events: none;
 }
 
-/* SMART AUTO-SCALING NAME */
+/* MAIN NAME */
 .card-name-text {
-  display: inline-block;
-
-  /* AUTO FONT SIZE BASED ON SCREEN */
-  font-size: clamp(1.4rem, 2.5vw, 2.6rem);
-
+  display: block;
+  font-size: clamp(1.5rem, 2.6vw, 2.7rem);
   font-weight: 600;
   font-family: 'Cormorant Garamond', serif;
   color: var(--gold);
   letter-spacing: 1.5px;
-  line-height: 1.2;
+  line-height: 1;
+  margin-bottom: 0.1rem;
 
-  /* HANDLE LONG NAMES */
   white-space: normal;
   word-break: break-word;
 
-  /* ELEGANCE */
   text-shadow: 1px 1px 3px rgba(0,0,0,0.25);
   animation: fadeIn 1.5s ease-in;
 }
 
-/* FADE IN */
+/* FAMILY / PERSON LINE */
+.card-family-text {
+    display: block;
+    font-size: clamp(0.7rem, 1.8vw, 1.4rem);
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 1px;
+    color: var(--gold);
+    line-height: 1;
+    animation: fadeIn 2s ease-in;
+}
+
+/* FADE ANIMATION */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(6px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
 
 
 /* ========================================
