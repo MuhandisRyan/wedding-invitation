@@ -5,84 +5,456 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Invitation</title>
     
-    <!-- WhatsApp Open Graph Meta Tags -->
     <meta property="og:title" content="You're Invited to Our Wedding" />
     <meta property="og:description" content="Join us in celebrating our special day" />
-    <meta property="og:image" content="https://muhandisryan.github.io/wedding-invitation/assets/card.png" />
+    <meta property="og:image" content="assets/card.png" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://muhandisryan.github.io/wedding-invitation/assets/index.html" />
     
-    <!-- Arabic Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #d4af37;
+            --dark-gold: #b8941e;
+            --rose-gold: #b76e79;
+            --cream: #faf8f3;
+            --dark-brown: #4a3f35;
+            --white: #ffffff;
+            --burgundy: #800020;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 50%, #16213e 100%);
+            color: var(--dark-brown);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(183, 110, 121, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .sparkle {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: sparkle 3s infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .video-section {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(15, 52, 96, 0.95) 100%);
+        }
+
+        #inviteVideo {
+            width: 85%;
+            max-width: 800px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3),
+                        0 0 100px rgba(183, 110, 121, 0.2);
+            animation: videoGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes videoGlow {
+            0%, 100% { box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3), 0 0 100px rgba(183, 110, 121, 0.2); }
+            50% { box-shadow: 0 20px 80px rgba(212, 175, 55, 0.5), 0 0 120px rgba(183, 110, 121, 0.4); }
+        }
+
+        .video-overlay {
+            position: relative;
+            width: 100%;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #faf8f3 0%, #f5f2ea 100%);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-text-container {
+            text-align: center;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .video-name-en {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            color: var(--gold);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 0.5rem;
+            animation: fadeInUp 2s ease-out, shimmer 4s ease-in-out infinite;
+        }
+
+        .video-name-ar {
+            font-family: 'Amiri', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            color: var(--rose-gold);
+            direction: rtl;
+            margin-bottom: 1rem;
+            animation: fadeInUp 2.3s ease-out;
+        }
+
+        .video-subtitle {
+            font-size: 1.3rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--dark-brown);
+            opacity: 0.8;
+            animation: fadeInUp 2.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shimmer {
+            0%, 100% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); }
+            50% { text-shadow: 2px 2px 20px rgba(212, 175, 55, 0.6), 0 0 30px rgba(212, 175, 55, 0.4); }
+        }
+
+        .card-section {
+            background: linear-gradient(180deg, #faf8f3 0%, #f5f2ea 50%, #faf8f3 100%);
+            padding: 3rem 1rem;
+            position: relative;
+        }
+
+        .card-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .card-frame {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            animation: cardEntrance 1s ease-out;
+        }
+
+        @keyframes cardEntrance {
+            0% { opacity: 0; transform: translateY(50px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .card-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .card-row-full {
+            width: 100%;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .card-page {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .card-page::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 48%, rgba(255, 255, 255, 0.3) 50%, transparent 52%);
+            background-size: 200% 200%;
+            animation: shine 3s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shine {
+            0% { background-position: -100% -100%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        .card-image {
+            width: 100%;
+            display: block;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .card-page:hover .card-image {
+            transform: scale(1.05);
+        }
+
+        .card-name-overlay {
+            position: absolute;
+            top: 61.3%;
+            left: 32%;
+            transform: translateY(-50%);
+            width: 40%;
+            text-align: left;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            animation: nameGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes nameGlow {
+            0%, 100% { filter: drop-shadow(0 2px 4px rgba(11, 10, 6, 0.3)); }
+            50% { filter: drop-shadow(0 4px 12px rgba(212, 175, 55, 0.6)); }
+        }
+
+        .card-name-text {
+            font-weight: 600;
+            font-size: clamp(1rem, 2vw, 1.6rem);
+            color: #0b0a06;
+            word-break: break-word;
+            margin-bottom: 0.2rem;
+            line-height: 1.2;
+        }
+
+        .card-family-text {
+            font-size: clamp(0.8rem, 1.5vw, 1.2rem);
+            color: #0b0a06;
+            /* line-height: 2; */
+            margin-bottom: -23px;
+        }
+
+        .details-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+            padding: 5rem 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .details-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveBackground 20s linear infinite;
+        }
+
+        @keyframes moveBackground {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .details-container {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .couple-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+            animation: fadeInUp 1s ease-out, pulseGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { text-shadow: 0 0 20px rgba(212, 175, 55, 0.5); }
+            50% { text-shadow: 0 0 40px rgba(212, 175, 55, 0.8), 0 0 60px rgba(212, 175, 55, 0.4); }
+        }
+
+        .event-details {
+            margin: 2rem 0;
+        }
+
+        .detail-item {
+            margin-bottom: 2rem;
+            animation: fadeInUp 1.3s ease-out;
+        }
+
+        .detail-item h3 {
+            font-size: 2rem;
+            color: var(--rose-gold);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(183, 110, 121, 0.5);
+        }
+
+        .detail-item p {
+            font-size: 1.4rem;
+            color: var(--cream);
+            margin: 0.3rem 0;
+        }
+
+        .message {
+            margin-top: 3rem;
+            padding: 2rem;
+            border-top: 2px solid var(--gold);
+            border-bottom: 2px solid var(--gold);
+            position: relative;
+            animation: fadeInUp 1.6s ease-out;
+        }
+
+        .message::before,
+        .message::after {
+            content: '❀';
+            position: absolute;
+            font-size: 2rem;
+            color: var(--gold);
+            animation: rotate 4s linear infinite;
+        }
+
+        .message::before {
+            top: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .message::after {
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%) rotate(180deg);
+        }
+
+        @keyframes rotate {
+            0%, 100% { transform: translateX(-50%) rotate(0deg); }
+            50% { transform: translateX(-50%) rotate(180deg); }
+        }
+
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            font-size: 2.2rem;
+            direction: rtl;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .message p:last-child {
+            font-size: 1.6rem;
+            font-style: italic;
+            color: var(--cream);
+        }
+
+        @media (max-width: 768px) {
+            .video-name-en { font-size: 3rem; }
+            .video-name-ar { font-size: 2.2rem; }
+            .video-subtitle { font-size: 1rem; }
+            .card-name-overlay { 
+                top: 61.3%; 
+                left: 32%;
+                width: 50%;
+            }
+            .card-name-text { font-size: clamp(0.75rem, 2vw, 1.2rem); }
+            .card-family-text {margin-bottom: -17px; font-size: clamp(0.75rem, 1.3vw, 1rem); }
+            .couple-names { font-size: 3rem; }
+            .detail-item h3 { font-size: 1.5rem; }
+            .detail-item p { font-size: 1.1rem; }
+            .arabic-text { font-size: 1.8rem; }
+            .details-container { padding: 2rem 1rem; }
+        }
+
+        @media (max-width: 480px) {
+            .video-name-en { font-size: 2.5rem; }
+            .card-name-overlay { 
+                top: 61.2%; 
+                left: 32%;
+                width: 50%;
+            }
+            .card-name-text { font-size: clamp(1.1rem, 1.5vw, 1rem); }
+            .card-family-text {margin-bottom: -24px; font-size: clamp(0.95rem, 1.2vw, 0.9rem); }
+            .couple-names { font-size: 2.5rem; }
+            .card-row { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-            <!-- Animated Name Overlay on Video -->
-        <div class="video-overlay">
-            <div class="video-text-container">
-                <h1 class="video-name-en" id="videoNameEn">Dear Guest</h1>
-                <h1 class="video-name-ar" id="videoNameAr">عزيزي الضيف</h1>
-                <p class="video-subtitle">You are cordially invited</p>
-            </div>
+    <div class="video-overlay">
+        <div class="video-text-container">
+            <h1 class="video-name-en" id="videoNameEn">Dear Guest</h1>
+            <h1 class="video-name-ar" id="videoNameAr">عزيزي الضيف</h1>
+            <p class="video-subtitle">You are cordially invited</p>
         </div>
-    <!-- Video Section with Overlay -->
+    </div>
+
     <section class="video-section">
         <video id="inviteVideo" autoplay muted loop playsinline>
-            <source src="https://muhandisryan.github.io/wedding-invitation/assets/invitation.mp4" type="video/mp4">
+            <source src="assets/invitation.MP4" type="video/mp4">
             Your browser does not support the video.
         </video>
-        
-        <!-- Animated Name Overlay on Video -->
-        <!-- <div class="video-overlay">
-            <div class="video-text-container">
-                <h1 class="video-name-en" id="videoNameEn">Dear Guest</h1>
-                <h1 class="video-name-ar" id="videoNameAr">عزيزي الضيف</h1>
-                <p class="video-subtitle">You are cordially invited</p>
-            </div>
-        </div> -->
     </section>
 
-    <!-- Wedding Card Section -->
-<section class="card-section">
-
-  <div class="card-frame">
-
-    <!-- TOP ROW: 2 IMAGES SIDE BY SIDE -->
-    <div class="card-row">
-
-      <!-- IMAGE 1 -->
-      <div class="card-page">
-        <img src="https://muhandisryan.github.io/wedding-invitation/assets/1.jpeg" alt="Wedding Card Front" class="card-image clickable">
-      </div>
-
-      <!-- IMAGE 2 (NAME HERE) -->
-      <div class="card-page card-inner">
-        <img src="https://muhandisryan.github.io/wedding-invitation/assets/2.jpeg" alt="Wedding Card Inner" class="card-image clickable">
-
-        <!-- NAME OVERLAY -->
-        <div class="card-name-overlay">
-          <span class="card-name-text" id="cardNameText"></span>
-          <span class="card-family-text" id="cardFamilyText"></span>
+    <section class="card-section" id="cardSection">
+        <div class="card-frame">
+            <div class="card-row">
+                <div class="card-page">
+                    <img src="assets/1.jpeg" alt="Wedding Card Front" class="card-image">
+                    <div class="card-name-overlay">
+                        <span class="card-name-text" id="cardNameText"></span>
+                        <span class="card-family-text" id="cardFamilyText"></span>
+                    </div>
+                </div>
+                <div class="card-page card-inner">
+                    <img src="assets/2.jpeg" alt="Wedding Card Inner" class="card-image">
+                    
+                </div>
+            </div>
+            <div class="card-row-full">
+                <div class="card-page">
+                    <img src="assets/3.jpeg" alt="Wedding Programme" class="card-image">
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-    </div>
-
-    <!-- BOTTOM ROW: FULL WIDTH -->
-    <div class="card-row-full">
-      <div class="card-page">
-        <img src="https://muhandisryan.github.io/wedding-invitation/assets/3.jpeg" alt="Wedding Programme" class="card-image clickable">
-      </div>
-    </div>
-
-  </div>
-
-</section>
-
-    <!-- Invitation Details -->
     <section class="details-section">
         <div class="details-container">
             <h2 class="couple-names">Khadija & Mashroor</h2>
@@ -98,7 +470,6 @@
                     <h3>Venue</h3>
                     <p>Awadh International</p>
                     <p>Ismailganj, Kamta, Lucknow</p>
-                    <!-- <p>123 Main Street, City</p> -->
                 </div>
             </div>
             
@@ -109,10 +480,99 @@
         </div>
     </section>
 
-    <script src="script.js"></script>
+    <script>
+        (function () {
+            'use strict';
+
+            const params = new URLSearchParams(window.location.search);
+
+            function formatName(text) {
+                return text
+                    .toLowerCase()
+                    .split(' ')
+                    .filter(Boolean)
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(' ');
+            }
+
+            function getRecipientName() {
+                const rawName = params.get('to');
+                if (!rawName || rawName.trim() === '') return 'Guest';
+                return formatName(decodeURIComponent(rawName.trim()));
+            }
+
+            function createSparkles() {
+                for (let i = 0; i < 50; i++) {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    sparkle.style.left = Math.random() * 100 + '%';
+                    sparkle.style.top = Math.random() * 100 + '%';
+                    sparkle.style.animationDelay = Math.random() * 3 + 's';
+                    document.body.appendChild(sparkle);
+                }
+            }
+
+            function updateInvitation() {
+                const recipientName = getRecipientName();
+                const type = params.get('type');
+
+                const cardName = document.getElementById('cardNameText');
+                const cardFamily = document.getElementById('cardFamilyText');
+
+                if (cardName) cardName.textContent = recipientName;
+
+                if (cardFamily) {
+                    cardFamily.textContent = '';
+                    if (type === 'family') {
+                        cardFamily.textContent = 'With Family';
+                    } else if (type === 'single') {
+                        cardFamily.textContent = '(Only)';
+                    }
+                }
+
+                const videoNameEn = document.getElementById('videoNameEn');
+                if (videoNameEn) {
+                    videoNameEn.textContent = `Dear ${recipientName}`;
+                }
+
+                const videoNameAr = document.getElementById('videoNameAr');
+                if (videoNameAr) {
+                    videoNameAr.textContent = recipientName === 'Guest' ? 'عزيزي الضيف' : `عزيزي ${recipientName}`;
+                }
+
+                document.title = `Wedding Invitation - ${recipientName}`;
+            }
+
+            function initVideo() {
+                const video = document.getElementById('inviteVideo');
+                if (!video) return;
+
+                video.muted = true;
+                video.playsInline = true;
+
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(() => {
+                        document.body.addEventListener('click', function playOnce() {
+                            video.play();
+                            document.body.removeEventListener('click', playOnce);
+                        }, { once: true });
+                    });
+                }
+            }
+
+            function init() {
+                updateInvitation();
+                initVideo();
+                createSparkles();
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+        })();
+    </script>
 </body>
 </html>
-
-
-
-
