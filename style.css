@@ -155,7 +155,7 @@ body {
 /* NAME OVERLAY (ONLY IMAGE 2) */
 .card-name-overlay {
   position: absolute;
-  top: 61%;
+  top: 58.8%;
   left: -61%;
   transform: translate(-50%, -50%);
   width: 55%;
@@ -313,5 +313,6 @@ body {
         font-size: 2rem;
     }
 }
+
 
 
