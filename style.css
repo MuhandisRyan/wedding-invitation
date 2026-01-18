@@ -180,7 +180,7 @@ body {
   /* margin-top: 0.3rem; */
   font-size: clamp(0.9rem, 1.4vw, 1.3rem);
   color: var(--gold);
-  margin-bottom: -24px;
+  margin-bottom: -45px;
 }
 
 
@@ -313,6 +313,7 @@ body {
         font-size: 2rem;
     }
 }
+
 
 
 
