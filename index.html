@@ -47,18 +47,39 @@
 
     <!-- Wedding Card Section -->
 <section class="card-section">
-  <div class="card-container">
 
-    <!-- Full Combined Card Image -->
-    <img src="assets/card.png" alt="Wedding Invitation Card" class="card-image">
+  <div class="card-frame">
 
-    <!-- Name Overlay -->
-<div class="card-name-overlay">
-  <span class="card-name-text" id="cardNameText"></span>
-  <span class="card-family-text" id="cardFamilyText"></span>
-</div>
+    <!-- TOP ROW: 2 IMAGES SIDE BY SIDE -->
+    <div class="card-row">
+
+      <!-- IMAGE 1 -->
+      <div class="card-page">
+        <img src="assets/1.jpeg" alt="Wedding Card Front" class="card-image clickable">
+      </div>
+
+      <!-- IMAGE 2 (NAME HERE) -->
+      <div class="card-page card-inner">
+        <img src="assets/2.jpeg" alt="Wedding Card Inner" class="card-image clickable">
+
+        <!-- NAME OVERLAY -->
+        <div class="card-name-overlay">
+          <span class="card-name-text" id="cardNameText"></span>
+          <span class="card-family-text" id="cardFamilyText"></span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM ROW: FULL WIDTH -->
+    <div class="card-row-full">
+      <div class="card-page">
+        <img src="assets/3.jpeg" alt="Wedding Programme" class="card-image clickable">
+      </div>
+    </div>
 
   </div>
+
 </section>
 
     <!-- Invitation Details -->
@@ -91,5 +112,6 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 
 
