@@ -7,7 +7,7 @@
     
     <meta property="og:title" content="You're Invited to Our Wedding" />
     <meta property="og:description" content="Join us in celebrating our special day" />
-    <meta property="og:image" content="assets/card.png" />
+    <meta property="og:image" content="https://muhandisryan.github.io/wedding-invitation/assets/card.png" />
     <meta property="og:type" content="website" />
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -405,15 +405,18 @@
         @media (max-width: 480px) {
             .video-name-en { font-size: 2.5rem; }
             .card-name-overlay { 
-                top: 61.2%; 
+                top: 60.2%; 
                 left: 32%;
-                width: 50%;
+                width: 100%;
             }
-            .card-name-text { font-size: clamp(1.1rem, 1.5vw, 1rem); }
-            .card-family-text {margin-bottom: -24px; font-size: clamp(0.95rem, 1.2vw, 0.9rem); }
+            .card-name-text { font-size: clamp(0.75rem, 1.5vw, 1rem); }
+            .card-family-text {margin-bottom: -24px; font-size: clamp(0.65rem, 1.2vw, 0.9rem); }
             .couple-names { font-size: 2.5rem; }
-            .card-row { grid-template-columns: 1fr; }
-        }
+            .card-row { 
+                /* grid-template-columns: 1fr;  */
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
     </style>
 </head>
 <body>
@@ -427,7 +430,7 @@
 
     <section class="video-section">
         <video id="inviteVideo" autoplay muted loop playsinline>
-            <source src="assets/invitation.MP4" type="video/mp4">
+            <source src="https://muhandisryan.github.io/wedding-invitation/assets/invitation.MP4" type="video/mp4">
             Your browser does not support the video.
         </video>
     </section>
@@ -436,20 +439,20 @@
         <div class="card-frame">
             <div class="card-row">
                 <div class="card-page">
-                    <img src="assets/1.jpeg" alt="Wedding Card Front" class="card-image">
+                    <img src="https://muhandisryan.github.io/wedding-invitation/assets/1.jpeg" alt="Wedding Card Front" class="card-image">
                     <div class="card-name-overlay">
                         <span class="card-name-text" id="cardNameText"></span>
                         <span class="card-family-text" id="cardFamilyText"></span>
                     </div>
                 </div>
                 <div class="card-page card-inner">
-                    <img src="assets/2.jpeg" alt="Wedding Card Inner" class="card-image">
+                    <img src="https://muhandisryan.github.io/wedding-invitation/assets/2.jpeg" alt="Wedding Card Inner" class="card-image">
                     
                 </div>
             </div>
             <div class="card-row-full">
                 <div class="card-page">
-                    <img src="assets/3.jpeg" alt="Wedding Programme" class="card-image">
+                    <img src="https://muhandisryan.github.io/wedding-invitation/assets/3.jpeg" alt="Wedding Programme" class="card-image">
                 </div>
             </div>
         </div>
@@ -576,3 +579,4 @@
     </script>
 </body>
 </html>
+
