@@ -110,71 +110,77 @@ body {
 
 /* CARD SECTION */
 .card-section {
-  padding: 4rem 1rem;
   background: var(--cream);
+  padding: 4rem 1rem;
   display: flex;
   justify-content: center;
 }
 
-/* CARD CONTAINER */
-.card-container {
+/* MAIN FRAME */
+.card-frame {
+  max-width: 1100px;
+  width: 100%;
+  background: var(--cream);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* TOP ROW (SIDE BY SIDE) */
+.card-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* BOTTOM ROW */
+.card-row-full {
+  width: 100%;
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+/* CARD PAGE */
+.card-page {
   position: relative;
-  max-width: 1000px;
   width: 100%;
 }
 
-/* CARD IMAGE */
+/* IMAGE */
 .card-image {
   width: 100%;
-  height: auto;
   display: block;
+  cursor: zoom-in;
+  height: 100%;
 }
 
-/* NAME OVERLAY POSITION */
+/* NAME OVERLAY (ONLY IMAGE 2) */
 .card-name-overlay {
   position: absolute;
-  top: 34.3%;          /* adjust if needed */
-  left: 20%;
+  top: 61%;
+  left: -61%;
   transform: translate(-50%, -50%);
-  width: 50%;
+  width: 55%;
   text-align: center;
   pointer-events: none;
 
   display: flex;
-  flex-direction: column;   /* 🔑 forces next line */
+  flex-direction: column;
   align-items: center;
 }
 
-/* MAIN NAME */
+/* NAME */
 .card-name-text {
-  display: block;
-  font-size: clamp(1.6rem, 2.6vw, 2.8rem);
+  /* font-size: clamp(1.6rem, 2.6vw, 2.8rem); */
   font-weight: 600;
-  font-family: 'Cormorant Garamond', serif;
   color: var(--gold);
-  /* letter-spacing: 1.5px; */
-  /* line-height: 1.2; */
-
-  max-width: 100%;
   word-break: break-word;
-  text-align: center;
-
-  margin: 0;               /* 🔑 reset */
 }
 
-/* WITH FAMILY / ONLY */
+/* FAMILY LINE */
 .card-family-text {
-  display: block;
-  margin-top: 0.35rem;     /* 🔑 spacing BELOW name */
-
-  font-size: clamp(0.7rem, 1.6vw, 1.4rem);
-  /* font-style: italic; */
-  font-weight: 400;
-  /* letter-spacing: 1px; */
-  transform: scale(0.95);
+  /* margin-top: 0.3rem; */
+  font-size: clamp(0.9rem, 1.4vw, 1.3rem);
   color: var(--gold);
-  text-align: center;
-  white-space: normal;
+  margin-bottom: -24px;
 }
 
 
@@ -307,4 +313,5 @@ body {
         font-size: 2rem;
     }
 }
+
 
