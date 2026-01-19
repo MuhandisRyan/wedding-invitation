@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Invitation</title>
     
-    <meta property="og:title" content="You're Invited to Our Wedding" />
-    <meta property="og:description" content="Join us in celebrating our special day" />
-    <meta property="og:image" content="https://muhandisryan.github.io/wedding-invitation/assets/card.png" />
+    <meta property="og:title" content="You're Invited to Khadija & Mashroor's Wedding" />
+    <meta property="og:description" content="Join us on Friday, January 30th, 2026 at Awadh International, Lucknow" />
+    <meta property="og:image" content="https://muhandisryan.github.io/wedding-invitation/assets/thumbnail.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:type" content="website" />
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,26 +49,40 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(183, 110, 121, 0.1) 0%, transparent 50%);
+            background: radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(183, 110, 121, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 40%);
             pointer-events: none;
             z-index: 0;
+            animation: gradientShift 15s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
 
         .sparkle {
             position: fixed;
-            width: 3px;
-            height: 3px;
+            width: 4px;
+            height: 4px;
             background: var(--gold);
             border-radius: 50%;
+            box-shadow: 0 0 10px var(--gold), 0 0 20px var(--gold);
             animation: sparkle 3s infinite;
             pointer-events: none;
             z-index: 1;
         }
 
         @keyframes sparkle {
-            0%, 100% { opacity: 0; transform: scale(0); }
-            50% { opacity: 1; transform: scale(1); }
+            0%, 100% { 
+                opacity: 0; 
+                transform: scale(0) rotate(0deg); 
+            }
+            50% { 
+                opacity: 1; 
+                transform: scale(1.5) rotate(180deg); 
+            }
         }
 
         .video-section {
@@ -76,34 +92,251 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(15, 52, 96, 0.95) 100%);
+            background: linear-gradient(135deg, 
+                rgba(26, 26, 46, 0.95) 0%, 
+                rgba(15, 52, 96, 0.98) 50%,
+                rgba(22, 33, 62, 0.95) 100%);
+            overflow: hidden;
+        }
+
+        .video-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(212, 175, 55, 0.2) 0%, transparent 60%),
+                radial-gradient(circle at 70% 60%, rgba(183, 110, 121, 0.2) 0%, transparent 60%);
+            animation: pulseLight 6s ease-in-out infinite;
+        }
+
+        @keyframes pulseLight {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .video-container {
+            position: relative;
+            width: 85%;
+            max-width: 800px;
+            z-index: 2;
         }
 
         #inviteVideo {
-            width: 85%;
-            max-width: 800px;
-            /* border-radius: 20px; */
-            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3),
-                        0 0 100px rgba(183, 110, 121, 0.2);
+            width: 100%;
+            display: block;
+            box-shadow: 
+                0 20px 60px rgba(212, 175, 55, 0.4),
+                0 0 100px rgba(183, 110, 121, 0.3),
+                0 0 150px rgba(212, 175, 55, 0.2);
             animation: videoGlow 3s ease-in-out infinite;
         }
 
         @keyframes videoGlow {
-            0%, 100% { box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3), 0 0 100px rgba(183, 110, 121, 0.2); }
-            50% { box-shadow: 0 20px 80px rgba(212, 175, 55, 0.5), 0 0 120px rgba(183, 110, 121, 0.4); }
+            0%, 100% { 
+                box-shadow: 
+                    0 20px 60px rgba(212, 175, 55, 0.4), 
+                    0 0 100px rgba(183, 110, 121, 0.3),
+                    0 0 150px rgba(212, 175, 55, 0.2);
+            }
+            50% { 
+                box-shadow: 
+                    0 25px 80px rgba(212, 175, 55, 0.6), 
+                    0 0 130px rgba(183, 110, 121, 0.5),
+                    0 0 200px rgba(212, 175, 55, 0.4);
+            }
+        }
+
+        .video-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 20px 15px 15px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-container:hover .video-controls {
+            opacity: 1;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-filled {
+            height: 100%;
+            background: var(--gold);
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .controls-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .control-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .control-btn:hover {
+            color: var(--gold);
+            transform: scale(1.1);
+        }
+
+        .volume-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .volume-slider {
+            width: 80px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .volume-filled {
+            height: 100%;
+            background: var(--gold);
+            border-radius: 5px;
+            width: 100%;
+            transition: width 0.1s linear;
+        }
+
+        .time-display {
+            color: white;
+            font-size: 14px;
+            margin-left: auto;
+        }
+
+        .unmute-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 10px;
+            cursor: pointer;
+            z-index: 10;
+            animation: pulse 2s ease-in-out infinite;
+            border: 2px solid var(--gold);
+        }
+
+        .unmute-overlay:hover {
+            background: rgba(0, 0, 0, 0.9);
+            border-color: var(--rose-gold);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.05); }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: var(--gold);
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            z-index: 20;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+        }
+
+        .scroll-arrow {
+            width: 30px;
+            height: 30px;
+            border-right: 3px solid var(--gold);
+            border-bottom: 3px solid var(--gold);
+            transform: rotate(45deg);
+            margin: 0 auto;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-15px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-10px);
+            }
         }
 
         .video-overlay {
             position: relative;
             width: 100%;
             padding: 1rem 2rem;
-            background: linear-gradient(135deg, #faf8f3 0%, #f5f2ea 100%);
+            background: linear-gradient(135deg, 
+                rgba(250, 248, 243, 0.98) 0%, 
+                rgba(245, 242, 234, 0.98) 50%,
+                rgba(250, 248, 243, 0.98) 100%);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .video-overlay::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(212, 175, 55, 0.03) 50%, 
+                transparent 70%);
+            animation: shimmerOverlay 8s linear infinite;
+        }
+
+        @keyframes shimmerOverlay {
+            0% { transform: translateX(-100%) translateY(-100%); }
+            100% { transform: translateX(100%) translateY(100%); }
         }
 
         .video-text-container {
             text-align: center;
             animation: fadeInUp 1.5s ease-out;
+            position: relative;
+            z-index: 1;
         }
 
         .video-name-en {
@@ -111,7 +344,6 @@
             font-size: 4rem;
             color: var(--gold);
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            /* margin-bottom: 0.5rem; */
             animation: fadeInUp 2s ease-out, shimmer 4s ease-in-out infinite;
         }
 
@@ -121,7 +353,6 @@
             font-weight: 400;
             color: var(--rose-gold);
             direction: rtl;
-            /* margin-bottom: 1rem; */
             animation: fadeInUp 2.3s ease-out;
         }
 
@@ -141,8 +372,17 @@
         }
 
         @keyframes shimmer {
-            0%, 100% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); }
-            50% { text-shadow: 2px 2px 20px rgba(212, 175, 55, 0.6), 0 0 30px rgba(212, 175, 55, 0.4); }
+            0%, 100% { 
+                text-shadow: 
+                    2px 2px 4px rgba(0, 0, 0, 0.1),
+                    0 0 10px rgba(212, 175, 55, 0.3);
+            }
+            50% { 
+                text-shadow: 
+                    2px 2px 20px rgba(212, 175, 55, 0.8), 
+                    0 0 40px rgba(212, 175, 55, 0.6),
+                    0 0 60px rgba(212, 175, 55, 0.4);
+            }
         }
 
         .card-section {
@@ -254,12 +494,14 @@
         .card-family-text {
             font-size: clamp(0.8rem, 1.5vw, 1.2rem);
             color: #0b0a06;
-            /* line-height: 2; */
             margin-bottom: -23px;
         }
 
         .details-section {
-            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+            background: linear-gradient(135deg, 
+                #1a1a2e 0%, 
+                #0f3460 50%,
+                #16213e 100%);
             padding: 5rem 1rem;
             position: relative;
             overflow: hidden;
@@ -272,9 +514,30 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
+            background: 
+                radial-gradient(circle, rgba(212, 175, 55, 0.15) 1px, transparent 1px),
+                radial-gradient(circle, rgba(183, 110, 121, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px, 70px 70px;
+            background-position: 0 0, 25px 25px;
             animation: moveBackground 20s linear infinite;
+        }
+
+        .details-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(212, 175, 55, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(183, 110, 121, 0.2) 0%, transparent 50%);
+            animation: ambientGlow 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes ambientGlow {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.7; }
         }
 
         @keyframes moveBackground {
@@ -288,12 +551,30 @@
             text-align: center;
             position: relative;
             z-index: 1;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
             padding: 3rem 2rem;
             border-radius: 20px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                inset 0 0 60px rgba(212, 175, 55, 0.1);
+            animation: containerGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes containerGlow {
+            0%, 100% {
+                border-color: rgba(212, 175, 55, 0.4);
+                box-shadow: 
+                    0 20px 60px rgba(0, 0, 0, 0.4),
+                    inset 0 0 60px rgba(212, 175, 55, 0.1);
+            }
+            50% {
+                border-color: rgba(212, 175, 55, 0.7);
+                box-shadow: 
+                    0 25px 80px rgba(212, 175, 55, 0.3),
+                    inset 0 0 80px rgba(212, 175, 55, 0.2);
+            }
         }
 
         .couple-names {
@@ -394,12 +675,13 @@
                 width: 50%;
             }
             .card-name-text { font-size: clamp(0.75rem, 2vw, 1.2rem); }
-            .card-family-text {margin-bottom: -17px; font-size: clamp(0.75rem, 1.3vw, 1rem); }
+            .card-family-text { margin-bottom: -17px; font-size: clamp(0.75rem, 1.3vw, 1rem); }
             .couple-names { font-size: 3rem; }
             .detail-item h3 { font-size: 1.5rem; }
             .detail-item p { font-size: 1.1rem; }
             .arabic-text { font-size: 1.8rem; }
             .details-container { padding: 2rem 1rem; }
+            .volume-slider { width: 60px; }
         }
 
         @media (max-width: 480px) {
@@ -410,13 +692,12 @@
                 width: 100%;
             }
             .card-name-text { font-size: clamp(0.75rem, 1.5vw, 1rem); }
-            .card-family-text {margin-bottom: -24px; font-size: clamp(0.65rem, 1.2vw, 0.9rem); }
+            .card-family-text { margin-bottom: -24px; font-size: clamp(0.65rem, 1.2vw, 0.9rem); }
             .couple-names { font-size: 2.5rem; }
-            .card-row { 
-                /* grid-template-columns: 1fr;  */
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-            }
+            .controls-row { gap: 8px; }
+            .volume-slider { width: 50px; }
+            .time-display { font-size: 12px; }
+        }
     </style>
 </head>
 <body>
@@ -429,10 +710,37 @@
     </div>
 
     <section class="video-section">
-        <video id="inviteVideo" autoplay muted loop playsinline>
-            <source src="https://muhandisryan.github.io/wedding-invitation/assets/invitation.mp4" type="video/mp4">
-            Your browser does not support the video.
-        </video>
+        <div class="video-container">
+            <video id="inviteVideo" loop playsinline>
+                <source src="https://muhandisryan.github.io/wedding-invitation/assets/invitation.mp4" type="video/mp4">
+                Your browser does not support the video.
+            </video>
+            
+            <div class="unmute-overlay" id="unmuteOverlay">
+                <span>🔊 Click to Play with Sound</span>
+            </div>
+            
+            <div class="video-controls">
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress-filled" id="progressFilled"></div>
+                </div>
+                <div class="controls-row">
+                    <button class="control-btn" id="playPauseBtn">▶️</button>
+                    <div class="volume-container">
+                        <button class="control-btn" id="muteBtn">🔇</button>
+                        <div class="volume-slider" id="volumeSlider">
+                            <div class="volume-filled" id="volumeFilled"></div>
+                        </div>
+                    </div>
+                    <div class="time-display" id="timeDisplay">0:00 / 0:00</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator" id="scrollIndicator">
+            <span>Scroll Down</span>
+            <div class="scroll-arrow"></div>
+        </div>
     </section>
 
     <section class="card-section" id="cardSection">
@@ -447,7 +755,6 @@
                 </div>
                 <div class="card-page card-inner">
                     <img src="https://muhandisryan.github.io/wedding-invitation/assets/2.jpeg" alt="Wedding Card Inner" class="card-image">
-                    
                 </div>
             </div>
             <div class="card-row-full">
@@ -488,99 +795,159 @@
             'use strict';
 
             const params = new URLSearchParams(window.location.search);
+        const video = document.getElementById('inviteVideo');
+        const unmuteOverlay = document.getElementById('unmuteOverlay');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const muteBtn = document.getElementById('muteBtn');
+        const progressBar = document.getElementById('progressBar');
+        const progressFilled = document.getElementById('progressFilled');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const volumeFilled = document.getElementById('volumeFilled');
+        const timeDisplay = document.getElementById('timeDisplay');
+        const scrollIndicator = document.getElementById('scrollIndicator');
 
-            function formatName(text) {
-                return text
-                    .toLowerCase()
-                    .split(' ')
-                    .filter(Boolean)
-                    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                    .join(' ');
+        function formatName(text) {
+            return text.toLowerCase().split(' ').filter(Boolean)
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        }
+
+        function getRecipientName() {
+            const rawName = params.get('to');
+            if (!rawName || rawName.trim() === '') return 'Guest';
+            return formatName(decodeURIComponent(rawName.trim()));
+        }
+
+        function createSparkles() {
+            for (let i = 0; i < 50; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 3 + 's';
+                document.body.appendChild(sparkle);
+            }
+        }
+
+        function updateInvitation() {
+            const recipientName = getRecipientName();
+            const type = params.get('type');
+
+            const cardName = document.getElementById('cardNameText');
+            const cardFamily = document.getElementById('cardFamilyText');
+
+            if (cardName) cardName.textContent = recipientName;
+
+            if (cardFamily) {
+                cardFamily.textContent = '';
+                if (type === 'family') cardFamily.textContent = 'With Family';
+                else if (type === 'single') cardFamily.textContent = '(Only)';
             }
 
-            function getRecipientName() {
-                const rawName = params.get('to');
-                if (!rawName || rawName.trim() === '') return 'Guest';
-                return formatName(decodeURIComponent(rawName.trim()));
+            const videoNameEn = document.getElementById('videoNameEn');
+            if (videoNameEn) videoNameEn.textContent = `Dear ${recipientName}`;
+
+            const videoNameAr = document.getElementById('videoNameAr');
+            if (videoNameAr) {
+                videoNameAr.textContent = recipientName === 'Guest' ? 'عزيزي الضيف' : `عزيزي ${recipientName}`;
             }
 
-            function createSparkles() {
-                for (let i = 0; i < 50; i++) {
-                    const sparkle = document.createElement('div');
-                    sparkle.className = 'sparkle';
-                    sparkle.style.left = Math.random() * 100 + '%';
-                    sparkle.style.top = Math.random() * 100 + '%';
-                    sparkle.style.animationDelay = Math.random() * 3 + 's';
-                    document.body.appendChild(sparkle);
-                }
-            }
+            document.title = `Wedding Invitation - ${recipientName}`;
+        }
 
-            function updateInvitation() {
-                const recipientName = getRecipientName();
-                const type = params.get('type');
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
 
-                const cardName = document.getElementById('cardNameText');
-                const cardFamily = document.getElementById('cardFamilyText');
+        function initVideo() {
+            video.volume = 0.7;
+            video.muted = true;
 
-                if (cardName) cardName.textContent = recipientName;
+            unmuteOverlay.addEventListener('click', () => {
+                video.muted = false;
+                video.play();
+                unmuteOverlay.style.display = 'none';
+                playPauseBtn.textContent = '⏸️';
+                muteBtn.textContent = '🔊';
+            });
 
-                if (cardFamily) {
-                    cardFamily.textContent = '';
-                    if (type === 'family') {
-                        cardFamily.textContent = 'With Family';
-                    } else if (type === 'single') {
-                        cardFamily.textContent = '(Only)';
+            playPauseBtn.addEventListener('click', () => {
+                if (video.paused) {
+                    video.play();
+                    playPauseBtn.textContent = '⏸️';
+                    if (unmuteOverlay.style.display !== 'none') {
+                        unmuteOverlay.style.display = 'none';
                     }
+                } else {
+                    video.pause();
+                    playPauseBtn.textContent = '▶️';
                 }
+            });
 
-                const videoNameEn = document.getElementById('videoNameEn');
-                if (videoNameEn) {
-                    videoNameEn.textContent = `Dear ${recipientName}`;
+            muteBtn.addEventListener('click', () => {
+                video.muted = !video.muted;
+                muteBtn.textContent = video.muted ? '🔇' : '🔊';
+            });
+
+            video.addEventListener('timeupdate', () => {
+                const percent = (video.currentTime / video.duration) * 100;
+                progressFilled.style.width = percent + '%';
+                timeDisplay.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
+            });
+
+            progressBar.addEventListener('click', (e) => {
+                const rect = progressBar.getBoundingClientRect();
+                const percent = (e.clientX - rect.left) / rect.width;
+                video.currentTime = percent * video.duration;
+            });
+
+            volumeSlider.addEventListener('click', (e) => {
+                const rect = volumeSlider.getBoundingClientRect();
+                const percent = (e.clientX - rect.left) / rect.width;
+                video.volume = percent;
+                volumeFilled.style.width = (percent * 100) + '%';
+                if (video.muted && percent > 0) {
+                    video.muted = false;
+                    muteBtn.textContent = '🔊';
                 }
+            });
+        }
 
-                const videoNameAr = document.getElementById('videoNameAr');
-                if (videoNameAr) {
-                    videoNameAr.textContent = recipientName === 'Guest' ? 'عزيزي الضيف' : `عزيزي ${recipientName}`;
-                }
-
-                document.title = `Wedding Invitation - ${recipientName}`;
+        function initScrollIndicator() {
+            const cardSection = document.getElementById('cardSection');
+            
+            if (scrollIndicator && cardSection) {
+                scrollIndicator.addEventListener('click', () => {
+                    cardSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
             }
 
-            function initVideo() {
-                const video = document.getElementById('inviteVideo');
-                if (!video) return;
-
-                video.muted = true;
-                video.playsInline = true;
-
-                const playPromise = video.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(() => {
-                        document.body.addEventListener('click', function playOnce() {
-                            video.play();
-                            document.body.removeEventListener('click', playOnce);
-                        }, { once: true });
-                    });
+            window.addEventListener('scroll', () => {
+                if (scrollIndicator) {
+                    scrollIndicator.style.opacity = window.scrollY > 200 ? '0' : '1';
                 }
-            }
+            });
 
-            function init() {
-                updateInvitation();
-                initVideo();
-                createSparkles();
-            }
+            setTimeout(() => {
+                if (cardSection) {
+                    cardSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 8000);
+        }
 
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', init);
-            } else {
-                init();
-            }
-        })();
+        function init() {
+            updateInvitation();
+            initVideo();
+            initScrollIndicator();
+            createSparkles();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    })();
     </script>
 </body>
-</html>
-
-
-
-
-
